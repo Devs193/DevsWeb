@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration Check</title>
+</head>
+<body>
+
+  <h1>AGE VALIDATOR</h1>
+
+  <form id="registrationForm">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" placeholder="Enter name">
+    </div>
+<br>
+    <div>
+      <label for="section">Section: </label>
+      <select id="section">
+        <option value="2IT1">2-IT1</option>
+        <option value="2IT2">2-IT2</option>
+        <option value="2IT3">2-IT3</option>
+      </select>
+    </div>
+<br>
+    <div>
+      <label for="age">Age: </label>
+      <input type="number" id="age" placeholder="e.g. 25">
+    </div>
+<br>
+    <button type="button" onclick="checkRegistration()">Submit</button>
+  </form>
+
+  <p id="resultMessage"></p>
+
+  <script>
+    function checkRegistration() {
+      const nameInput = document.getElementById("name").value.trim();
+      const sectionInput = document.getElementById("section").value;
+      const ageInput = document.getElementById("age").value.trim();
+      const resultDiv = document.getElementById("resultMessage");
+
+      resultDiv.textContent = "";
+
+      if (nameInput === "" || ageInput === "") {
+        resultDiv.style.color = "red";
+        resultDiv.textContent = "Error: Please fill up all fields";
+        return;
+      }
+
+      const age = parseInt(ageInput, 10);
+
+      if (age <= 0) {
+        resultDiv.style.color = "yellow";
+        resultDiv.textContent = "Please input number greater than 0";
+        return;
+      }
+
+      if (age < 18) {
+        resultDiv.style.color = "red";
+        resultDiv.textContent = "Error: Minor Account. Access Restricted";
+        return;
+      }
+
+      resultDiv.style.color = "green";
+      resultDiv.textContent = `Access Granted: Adult Account. Hello ${nameInput} (${sectionInput}), you are ${age} years old.`;
+    }
+  </script>
+
+</body>
+</html>

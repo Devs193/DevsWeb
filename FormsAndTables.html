@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Registration System</title>
+<style>
+  :root{
+    --dark-purple:#4a1d6e;
+    --mid-purple:#7b3fa0;
+    --light-purple:#e9d9f5;
+    --white:#ffffff;
+    --gray:#6b6b6b;
+    --light-gray:#f4f2f7;
+    --black:#121212;
+  }
+
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  body{
+  background-image: url('Icarus.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #222;
+  }
+
+  header{
+    background-color: #121212;
+    color: #B80000;
+    text-align: center;
+    padding: 25px 10px;
+  }
+
+  header h1{
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  header p{
+    margin-top: 6px;
+    font-size: 14px;
+    color: #ffffff;
+  }
+
+  main{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .card{
+    background-color: #F4F4F6;
+    border-radius: 8px;
+    padding: 20px 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+
+  #registrationForm{
+    flex: 1 1 320px;
+    max-width: 380px;
+  }
+
+  #studentTableSection{
+    flex: 2 1 500px;
+  }
+
+  .section-title{
+    color: #121212;
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #121212;
+    padding-bottom: 8px;
+  }
+
+  .form-group{
+    margin-bottom: 15px;
+  }
+
+  .form-group label{
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #121212;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group select,
+  .form-group textarea{
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{
+    outline: none;
+    border-color: #B80F0A;
+  }
+
+  .radio-group label{
+    display: inline-block;
+    font-weight: normal;
+    margin-right: 15px;
+    color: #222;
+  }
+
+  .radio-group input{
+    margin-right: 5px;
+  }
+
+  .btn-row{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .btn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .btn-primary{
+    background-color: #121212;
+    color: #B80000;
+  }
+
+  .btn-primary:hover{
+    background-color: #950606;
+  }
+
+  .btn-secondary{
+    background-color: #ffffff;
+    color: #121212;
+    border: 1px solid #B80000;
+  }
+
+  .btn-secondary:hover{
+    background-color: #B80000;
+  }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+  }
+
+  caption{
+    text-align: left;
+    font-weight: bold;
+    color: #121212;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  thead{
+    background-color: #121212;
+    color: #FFD700;
+  }
+
+  th, td{
+    padding: 10px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  tbody tr:nth-child(even){
+    background-color: #f4f2f7;
+  }
+
+  tbody tr:hover{
+    background-color: #B80000;
+  }
+
+  .status{
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  .status-active{
+    background-color: #3a9d5d;
+  }
+
+  .status-pending{
+    background-color: #c99a1e;
+  }
+
+  .status-inactive{
+    background-color: #6b6b6b;
+  }
+
+  .info-banner{
+    margin: 0 30px 30px 30px;
+    background-color:#121212;
+    border-left: 5px solid #B80000;
+    padding: 15px 20px;
+    border-radius: 4px;
+  }
+
+  .info-banner h3{
+    color: #B80000;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .info-banner p{
+    font-size: 13px;
+    color: #ffffff;
+  }
+
+  footer{
+    background-color: #121212;
+    color: #B80000;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BABYLS DEMON SCHOOL REGISTRATION SYSTEM</h1>
+  <p>Please complete the registration form below and wait for our message on your email about your next step for enrollment.</p>
+</header>
+
+<main>
+
+  <section class="card" id="registrationForm">
+    <h2 class="section-title">Student Registration</h2>
+    <form action="#" method="post">
+      <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" placeholder="LastName, Name M.I." required>
+      </div>
+      
+      <div class="form-group">
+       <label for="clan">Clan:</label>
+       <input type="text" id="clan" name="clan" placeholder="Specify your Clan.">
+       </div>
+
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email"  placeholder="Name@gmail.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="studentCode">Student Code:</label>
+        <input type="text" id="studentId" name="studentCode" placeholder="Example: 001" required>
+      </div>
+
+      <div class="form-group">
+        <label for="Specialty">Specialty:</label>
+        <select id="Specialty" name="Specialty" required>
+          <option value=""> Select Your Specialty</option>
+          <option value="Assasination">Assasination</option>
+          <option value="Combat">Combat</option>
+          <option value="Enhancement">Enhancement</option>
+          <option value="Spell Casting">Spell Casting</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="male"> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="agender"> Agender</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Why do you want to enroll at Babyls Demon School?</label>
+        <textarea id="message" name="message" rows="4" placeholder="Enter your answer here."></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="reset" class="btn btn-secondary">Clear</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card" id="studentTableSection">
+    <h2 class="section-title">Registered Students</h2>
+    <table>
+      <caption>List of Currently Enrolled Students</caption>
+      <thead>
+        <tr>
+          <th>Student Code</th>
+          <th>Name</th>
+          <th>Specialty</th>
+          <th>Email</th>
+          <th>Year Level</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>001</td>
+          <td>Asmodeus Alice</td>
+          <td>Combat</td>
+          <td>Alice@email.com</td>
+          <td>2nd Year</td>
+          <td><span class="status status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>Sabnock Sabro</td>
+          <td>Combat</td>
+          <td>Sabro@email.com</td>
+          <td>1st Year</td>
+          <td><span class="status status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>Valac Clara</td>
+          <td>Enhancement</td>
+          <td>Clara@email.com</td>
+          <td>3rd Year</td>
+          <td><span class="status status-pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>004</td>
+          <td>Agares Picero</td>
+          <td>Spell Casting</td>
+          <td>Picero@email.com</td>
+          <td>2nd Year</td>
+          <td><span class="status status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td>005</td>
+          <td>Crocell Keroli</td>
+          <td>Spell Casting</td>
+          <td>Keroli@email.com</td>
+          <td>4th Year</td>
+          <td><span class="status status-pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>006</td>
+          <td>Andro M. Jazz</td>
+          <td>Assasination</td>
+          <td>Jazz@email.com</td>
+          <td>1st Year</td>
+          <td><span class="status status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td>007</td>
+          <td>Purson Soi</td>
+          <td>Assasination</td>
+          <td>Soi@email.com</td>
+          <td>3rd Year</td>
+          <td><span class="status status-inactive">Inactive</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<div class="info-banner">
+  <h3>Registration Information</h3>
+  <p>Make sure that the information provided above is precise, correct and complete before submitting.</p>
+</div>
+
+<footer>
+  <p>Dave Lawrence D. Beluso 2-IT3</p>
+</footer>
+
+</body>
+</html>
